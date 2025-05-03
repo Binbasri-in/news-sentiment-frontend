@@ -1,20 +1,7 @@
-import ProfileList from "@/components/ProfileList";
-import { Typography, Container, Box } from "@mui/material";
+// src/app/profiles/page.tsx
 
-export default function ProfilesPage() {
-  return (
-    <Container sx={{ mt: 5 }}>
-      {/* User Profiles Animation */}
-      <Box textAlign="center" mb={4}>
-      <img
-          src="/gifs/team-profiles.gif"
-          alt="Profiles Animation"
-          style={{ width: '200px', height: '200px', margin: '0 auto' }}
-        />
-      </Box>
+import ProfilesPageClient from '@/components/ProfilesPageClient';
 
-      <Typography variant="h4" mb={4}>Profiles</Typography>
-      <ProfileList />
-    </Container>
-  );
+export default function Page() {
+  return <ProfilesPageClient />;
 }

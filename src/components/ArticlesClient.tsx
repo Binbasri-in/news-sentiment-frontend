@@ -25,6 +25,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import LottieClientWrapper from '@/components/LottieClientWrapper';
 
 import SearchIcon from "@mui/icons-material/Search";
 import TuneIcon from "@mui/icons-material/Tune";
@@ -114,16 +115,19 @@ export default function ArticlesClient() {
     }
   };
 
+
   return (
     <Container sx={{ mt: 5 }}>
-      <Typography variant="h4" mb={4} textAlign="center">
-        <img
-          src="/gifs/search-animation.gif"
-          alt="Search Animation"
-          style={{ width: '100px', height: '100px', margin: '0 auto', display: 'block' }}
-        />
-        Browse News Articles
-      </Typography>
+      <LottieClientWrapper 
+        src="/lottie/website-design.json" 
+        width="200px"
+        height="200px"
+      />
+      <Stack direction="row" alignItems="center" spacing={1} mb={3}>
+        <TuneIcon />
+        <Typography variant="h5">Filter Articles</Typography>
+      </Stack>
+      <Divider sx={{ mb: 3 }} />
 
       <Grid container spacing={4}>
         {/* Left Sidebar Filters */}
@@ -271,10 +275,10 @@ export default function ArticlesClient() {
 
           {!loading && articles.length === 0 && (
             <Stack alignItems="center" spacing={2} mt={6}>
-              <img
-                src="/gifs/empty-search.gif"
-                alt="Empty Search"
-                style={{ width: '250px', height: '250px' }}
+              <LottieClientWrapper 
+                src="/lottie/search-for-interface.json" 
+                width="300px"
+                height="300px"
               />
               <Typography variant="h6" color="textSecondary">
                 No articles found. Try adjusting filters.

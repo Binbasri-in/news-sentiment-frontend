@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import ArticlesClient from "./ArticlesClient";
+import ArticlesClient from "../../components/ArticlesClient";
 
 export default function ArticlesPageWrapper() {
   return (

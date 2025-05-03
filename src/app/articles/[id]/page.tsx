@@ -1,4 +1,5 @@
 import ArticleDetail from "@/components/ArticleDetail";
+import LottieClientWrapper from '@/components/LottieClientWrapper';
 
 
 export default async function ArticleDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -12,16 +13,17 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
   if (!isValidId) {
     return <div>Invalid article ID</div>;
   }
-  
+
+
   return (
     <div style={{ marginTop: "2rem" }}>
       <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-      <img
-          src="/gifs/reading-news.gif"
-          alt="Reading News Animation"
-          style={{ width: '200px', height: '200px', margin: '0 auto' }}
-        />
-      </div>
+        <LottieClientWrapper
+          src="/lottie/video-marketing.json"
+          width="300px"
+          height="300px"
+        />      
+        </div>
 
       <ArticleDetail id={idNumber} />
     </div>

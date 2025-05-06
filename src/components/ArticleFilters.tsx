@@ -1,4 +1,3 @@
-// src/components/ArticleFilters.tsx
 "use client";
 
 import { FormEvent } from "react";
@@ -20,6 +19,18 @@ import TuneIcon from "@mui/icons-material/Tune";
 
 const CLASSIFICATIONS = ["Politics", "Technology", "Economy", "Environment"];
 const SENTIMENTS = ["Positive", "Neutral", "Negative"];
+const MINISTRIES = [
+  "Ministry of Information and Broadcasting",
+  "Ministry of Finance",
+  "Ministry of Parliamentary Affairs",
+  "Ministry of Law and Justice",
+  "Ministry of Home Affairs",
+  "Ministry of Culture",
+  "Ministry of Youth Affairs and Sports",
+  "Ministry of Science and Technology",
+  "Ministry of External Affairs",
+  "Ministry of Electronics and Information Technology",
+];
 
 interface ArticleFiltersProps {
   search: string;
@@ -28,6 +39,8 @@ interface ArticleFiltersProps {
   setClassificationFilters: (filters: string[]) => void;
   sentimentFilters: string[];
   setSentimentFilters: (filters: string[]) => void;
+  ministryFilters: string[];
+  setMinistryFilters: (filters: string[]) => void;
   sortBy: string;
   setSortBy: (sortBy: string) => void;
   onSubmit: (e: FormEvent) => void;
@@ -40,13 +53,19 @@ export default function ArticleFilters({
   setClassificationFilters,
   sentimentFilters,
   setSentimentFilters,
+  ministryFilters,
+  setMinistryFilters,
   sortBy,
   setSortBy,
   onSubmit,
 }: ArticleFiltersProps) {
-  const toggleFilter = (filterArray: string[], setFilterArray: (filters: string[]) => void, value: string) => {
+  const toggleFilter = (
+    filterArray: string[],
+    setFilterArray: (filters: string[]) => void,
+    value: string
+  ) => {
     if (filterArray.includes(value)) {
-      setFilterArray(filterArray.filter(f => f !== value));
+      setFilterArray(filterArray.filter((f) => f !== value));
     } else {
       setFilterArray([...filterArray, value]);
     }
@@ -59,7 +78,7 @@ export default function ArticleFilters({
           <TuneIcon />
           <Typography variant="h5">Filter Articles</Typography>
         </Stack>
-        
+
         <TextField
           label="Search Articles"
           value={search}
@@ -112,12 +131,29 @@ export default function ArticleFilters({
 
         <Divider />
 
+        <Typography variant="h6">Ministry</Typography>
+        <FormGroup>
+          {MINISTRIES.map((ministry) => (
+            <FormControlLabel
+              key={ministry}
+              control={
+                <Checkbox
+                  checked={ministryFilters.includes(ministry)}
+                  onChange={() =>
+                    toggleFilter(ministryFilters, setMinistryFilters, ministry)
+                  }
+                />
+              }
+              label={ministry}
+            />
+          ))}
+        </FormGroup>
+
+        <Divider />
+
         <Typography variant="h6">Sort By</Typography>
         <FormControl fullWidth>
-          <Select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-          >
+          <Select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
             <MenuItem value="newest">Newest</MenuItem>
             <MenuItem value="oldest">Oldest</MenuItem>
             <MenuItem value="relevance">Relevance</MenuItem>

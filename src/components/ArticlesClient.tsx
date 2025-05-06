@@ -25,6 +25,9 @@ export default function ArticlesClient() {
   const [sentimentFilters, setSentimentFilters] = useState<string[]>(
     searchParams.get("sentiment")?.split(",") || []
   );
+  const [ministryFilters, setMinistryFilters] = useState<string[]>(
+    searchParams.get("ministry")?.split(",") || []
+  );
   const [sortBy, setSortBy] = useState(searchParams.get("sort") || "newest");
 
   const [skip, setSkip] = useState(0);
@@ -103,6 +106,8 @@ export default function ArticlesClient() {
             setClassificationFilters={setClassificationFilters}
             sentimentFilters={sentimentFilters}
             setSentimentFilters={setSentimentFilters}
+            ministryFilters={ministryFilters}
+            setMinistryFilters={setMinistryFilters}
             sortBy={sortBy}
             setSortBy={setSortBy}
             onSubmit={handleFilterSubmit}

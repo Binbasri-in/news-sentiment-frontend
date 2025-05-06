@@ -1,3 +1,4 @@
+// src/app/articles/page.tsx
 import { Suspense } from "react";
 import ArticlesClient from "../../components/ArticlesClient";
 

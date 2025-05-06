@@ -25,6 +25,7 @@ export default function Header() {
           <Button color="inherit" component={Link} href="/">Home</Button>
           <Button color="inherit" component={Link} href="/articles">Articles</Button>
           <Button color="inherit" component={Link} href="/profiles">Profiles</Button>
+          <Button color="inherit" component={Link} href="/detect">Detect</Button> {/* 👈 New Link */}
         </Stack>
       </Toolbar>
     </AppBar>

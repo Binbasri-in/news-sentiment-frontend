@@ -71,11 +71,7 @@ export default function ArticleDetail({ id }: { id: number }) {
         {article.title || <i>Untitled Article</i>}
       </Typography>
 
-      <Typography
-        variant="body1"
-        paragraph
-        sx={{ textAlign: "justify", mr: 2 }}
-      >
+      <Typography variant="body1" paragraph>
         {article.content
           ? article.content.split(" ").slice(0, 150).join(" ") + "..."
           : article.summary || "No content available..."}

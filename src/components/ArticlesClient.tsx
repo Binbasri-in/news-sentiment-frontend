@@ -45,6 +45,7 @@ export default function ArticlesClient() {
         search: search || undefined,
         classification: classificationFilters.length ? classificationFilters.join(",") : undefined,
         sentiment: sentimentFilters.length ? sentimentFilters.join(",") : undefined,
+        ministry: ministryFilters.length ? ministryFilters.join(",") : undefined,
         sort: sortBy || undefined,
       };
       const data = await fetchArticles(params);
@@ -71,6 +72,7 @@ export default function ArticlesClient() {
     if (search) params.set("search", search);
     if (classificationFilters.length) params.set("classification", classificationFilters.join(","));
     if (sentimentFilters.length) params.set("sentiment", sentimentFilters.join(","));
+    if (ministryFilters.length) params.set("ministry", ministryFilters.join(","));
     if (sortBy) params.set("sort", sortBy);
     router.push(`/articles?${params.toString()}`);
   };

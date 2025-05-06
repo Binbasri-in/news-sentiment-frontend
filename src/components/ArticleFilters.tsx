@@ -17,7 +17,20 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import TuneIcon from "@mui/icons-material/Tune";
 
-const CLASSIFICATIONS = ["Politics", "Technology", "Economy", "Environment"];
+const CLASSIFICATIONS = [
+  "Entertainment",
+  "Business",
+  "Politics",
+  "Judiciary",
+  "Crime",
+  "Culture",
+  "Sports",
+  "Science",
+  "International",
+  "Technology",
+  "Economy",
+  "Environment"
+];
 const SENTIMENTS = ["Positive", "Neutral", "Negative"];
 const MINISTRIES = [
   "Ministry of Information and Broadcasting",

@@ -78,10 +78,12 @@ export default function ArticleDetail({ id }: { id: number }) {
       </Typography>
 
       {/* Ministry */}
-      <Typography variant="subtitle2" sx={{ mb: 2 }}>
-        <BusinessIcon sx={{ fontSize: 16, mr: 1, verticalAlign: "text-bottom" }} />
-        Ministry: {article.ministry_to_report || "Not specified"}
-      </Typography>
+      <Box sx={{ mb: 2 }}>
+          <Typography variant="subtitle2" gutterBottom>
+            <BusinessIcon sx={{ fontSize: 16, mr: 1, verticalAlign: 'text-bottom' }} />
+            Ministry: <span style={{ fontWeight: 'bold', color: '#1976d2' }}>{article.ministry_to_report || "Not specified"}</span>
+          </Typography>
+        </Box>
 
       {/* Sentiment Scores */}
       <Box sx={{ mb: 3 }}>

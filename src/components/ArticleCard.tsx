@@ -8,72 +8,88 @@ import {
   Stack,
   Chip,
   Box,
-  CardMedia,
   Button,
+  LinearProgress
 } from "@mui/material";
 import Link from "next/link";
 import LabelIcon from "@mui/icons-material/Label";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import ArticleIcon from "@mui/icons-material/Article";
+import BusinessIcon from "@mui/icons-material/Business";
+import SentimentSatisfiedIcon from "@mui/icons-material/SentimentSatisfied";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral";
 
 interface ArticleCardProps {
   article: {
     id: string;
     title?: string;
+    url: string;
     summary?: string;
     content?: string;
     classification?: string;
+    ministry_to_report?: string;
     published_at: string;
     tags?: string;
-    thumbnail_url?: string;
+    sentiment?: string;
+    positive_sentiment?: number;
+    negative_sentiment?: number;
+    neutral_sentiment?: number;
   };
 }
 
 export default function ArticleCard({ article }: ArticleCardProps) {
+  // Function to determine sentiment icon based on sentiment value
+  const getSentimentIcon = (sentiment?: string) => {
+    switch(sentiment?.toLowerCase()) {
+      case 'positive':
+        return <SentimentSatisfiedIcon color="success" />;
+      case 'negative':
+        return <SentimentVeryDissatisfiedIcon color="error" />;
+      default:
+        return <SentimentNeutralIcon color="info" />;
+    }
+  };
+
   return (
     <Card sx={{
-      display: 'flex',
       p: 2,
       transition: "0.3s",
       "&:hover": { boxShadow: 6 }
     }}>
-      <Box sx={{ flex: 1 }}>
-        <CardContent>
-          <Typography variant="subtitle2" color="textSecondary" gutterBottom>
+      <CardContent>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+          <Typography variant="subtitle2" color="textSecondary">
             <CalendarTodayIcon sx={{ fontSize: 14, mr: 1 }} />
             {article.classification?.toUpperCase()} | {new Date(article.published_at).toLocaleDateString()}
           </Typography>
-          <Typography variant="h5" component="div" gutterBottom>
-            {article.title || <i>Untitled Article</i>}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" paragraph>
-            {article.summary || article.content?.substring(0, 150) || "No summary available..."}
-          </Typography>
-          <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
-            {(article.tags?.split(",") || []).map((tag: string, idx: number) => (
-              <Chip
-                key={idx}
-                label={tag.trim()}
-                icon={<LabelIcon fontSize="small" />}
-                size="small"
-                variant="outlined"
-              />
-            ))}
-          </Stack>
-          <Stack direction="row" spacing={2} mt={2}>
-            <Link href={`/articles/${article.id}`}>
-              <Button variant="outlined" startIcon={<ArticleIcon />}>View Details</Button>
-            </Link>
-          </Stack>
-        </CardContent>
-      </Box>
+          <Chip 
+            icon={getSentimentIcon(article.sentiment)}
+            label={article.sentiment || "Unknown"} 
+            color={
+              article.sentiment?.toLowerCase() === "positive" ? "success" : 
+              article.sentiment?.toLowerCase() === "negative" ? "error" : "default"
+            }
+            size="small"
+          />
+        </Box>
 
-      <CardMedia
-        component="img"
-        image={article.thumbnail_url || "/default-thumbnail.png"}
-        alt="thumbnail"
-        sx={{ width: 160, height: 160, borderRadius: 2, objectFit: "cover" }}
-      />
+        <Typography variant="h5" component="div" gutterBottom>
+          {article.title || <i>Untitled Article</i>}
+        </Typography>
+        
+        
+        <Box sx={{ mb: 2 }}>
+          <Typography variant="subtitle2" gutterBottom>
+            <BusinessIcon sx={{ fontSize: 16, mr: 1, verticalAlign: 'text-bottom' }} />
+            Ministry: <span style={{ fontWeight: 'bold', color: '#1976d2' }}>{article.ministry_to_report || "Not specified"}</span>
+          </Typography>
+        </Box>
+        
+        <Link href={`/articles/${article.id}`} style={{ textDecoration: 'none' }}>
+          <Button variant="outlined" startIcon={<ArticleIcon />}>Read Full Article</Button>
+        </Link>
+      </CardContent>
     </Card>
   );
 }

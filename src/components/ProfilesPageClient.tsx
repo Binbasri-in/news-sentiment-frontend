@@ -17,11 +17,6 @@ export default function ProfilesPageClient() {
 
       <Typography variant="h2">Profiles</Typography>
 
-      <Stack spacing={2} direction="row">
-        <Link href="/"><Button variant="contained">Home</Button></Link>
-        <Link href="/articles"><Button variant="contained">View Articles</Button></Link>
-      </Stack>
-
       {/* 👉 Render the ProfileList below the buttons */}
       <ProfileList />
     </Stack>

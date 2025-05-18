@@ -16,6 +16,7 @@ import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDiss
 import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral";
 import { Card, CardContent, Chip, Stack, LinearProgress } from "@mui/material";
 import LabelIcon from "@mui/icons-material/Label";
+import Link from "next/link";
 
 export default function DetectPage() {
   const [url, setUrl] = useState("");
@@ -94,8 +95,8 @@ export default function DetectPage() {
                   article.sentiment?.toLowerCase() === "positive"
                     ? "success"
                     : article.sentiment?.toLowerCase() === "negative"
-                    ? "error"
-                    : "default"
+                      ? "error"
+                      : "default"
                 }
                 size="small"
               />
@@ -113,11 +114,11 @@ export default function DetectPage() {
 
             {/* Ministry */}
             <Box sx={{ mb: 2 }}>
-          <Typography variant="subtitle2" gutterBottom>
-            <BusinessIcon sx={{ fontSize: 16, mr: 1, verticalAlign: 'text-bottom' }} />
-            Ministry: <span style={{ fontWeight: 'bold', color: '#1976d2' }}>{article.ministry_to_report || "Not specified"}</span>
-          </Typography>
-        </Box>
+              <Typography variant="subtitle2" gutterBottom>
+                <BusinessIcon sx={{ fontSize: 16, mr: 1, verticalAlign: 'text-bottom' }} />
+                Ministry: <span style={{ fontWeight: 'bold', color: '#1976d2' }}>{article.ministry_to_report || "Not specified"}</span>
+              </Typography>
+            </Box>
 
             {/* Sentiment Scores */}
             <Box sx={{ mb: 3 }}>
@@ -176,17 +177,30 @@ export default function DetectPage() {
             </Stack>
 
             {/* Actions */}
-            {article.url && (
-              <Button
-                variant="contained"
-                color="primary"
-                href={article.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View Original Article
-              </Button>
-            )}
+            <Stack direction="row" spacing={2}>
+              <Link href={`/articles/${article.id}/report`}>
+                <Button variant="outlined" color="error">
+                  Report Article
+                </Button>
+              </Link>
+              {article.url ? (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  href={article.url}
+                  component="a"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Original Article
+                </Button>
+              ) : (
+                <Button variant="contained" color="primary" disabled>
+                  View Original Article
+                </Button>
+              )}
+            </Stack>
+
           </CardContent>
         </Card>
       )}

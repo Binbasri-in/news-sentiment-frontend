@@ -15,3 +15,4 @@ export async function reportArticle(articleId: number, reason: string) {
   const response = await api.post(`/articles/${articleId}/report`, { params: { reason } });
   return response.data;
 }
+

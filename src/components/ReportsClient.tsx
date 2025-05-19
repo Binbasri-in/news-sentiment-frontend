@@ -1,8 +1,8 @@
-// src/components/ReportsClient.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import { fetchArticles } from "@/lib/articles";
+import { sendMinistryEmail, sendSourceEmail } from "@/lib/emails";
 import {
     Container,
     Typography,
@@ -44,67 +44,97 @@ export default function ReportsClient() {
     return (
         <Container maxWidth="lg">
             <Typography variant="h4" gutterBottom>
-            Reported Articles
+                Reported Articles
             </Typography>
             <TableContainer component={Paper}>
-            <Table>
-                <TableHead>
-                <TableRow>
-                    <TableCell>Article ID</TableCell>
-                    <TableCell>Title</TableCell>
-                    <TableCell>Reason</TableCell>
-                    <TableCell>Actions</TableCell>
-                </TableRow>
-                </TableHead>
-                <TableBody>
-                {loading ? (
-                    <TableRow>
-                    <TableCell colSpan={4} align="center">
-                        <CircularProgress />
-                    </TableCell>
-                    </TableRow>
-                ) : error ? (
-                    <TableRow>
-                    <TableCell colSpan={4} align="center">
-                        <Alert severity="error">{error}</Alert>
-                    </TableCell>
-                    </TableRow>
-                ) : reportedArticles.length === 0 ? (
-                    <TableRow>
-                    <TableCell colSpan={4} align="center">
-                        <Alert severity="info">No reported articles found.</Alert>
-                    </TableCell>
-                    </TableRow>
-                ) : (
-                    reportedArticles.map((article) => (
-                    <TableRow key={article.id}>
-                        <TableCell>{article.id}</TableCell>
-                        <TableCell>{article.title}</TableCell>
-                        <TableCell>{article.reported_reason}</TableCell>
-                        <TableCell>
-                        <Button
-                            variant="outlined"
-                            color="secondary"
-                            sx={{ mr: 1 }}
-                            href={`mailto:?subject=Regarding Article ID ${article.id}&body=Please review the reported article: ${article.title}`}
-                        >
-                            Send Email Again
-                        </Button>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            href={`/articles/${article.id}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            View
-                        </Button>
-                        </TableCell>
-                    </TableRow>
-                    ))
-                )}
-                </TableBody>
-            </Table>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Article ID</TableCell>
+                            <TableCell>Title</TableCell>
+                            <TableCell>Reason</TableCell>
+                            <TableCell>Actions</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {loading ? (
+                            <TableRow>
+                                <TableCell colSpan={4} align="center">
+                                    <CircularProgress />
+                                </TableCell>
+                            </TableRow>
+                        ) : error ? (
+                            <TableRow>
+                                <TableCell colSpan={4} align="center">
+                                    <Alert severity="error">{error}</Alert>
+                                </TableCell>
+                            </TableRow>
+                        ) : reportedArticles.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={4} align="center">
+                                    <Alert severity="info">No reported articles found.</Alert>
+                                </TableCell>
+                            </TableRow>
+                        ) : (
+                            reportedArticles.map((article) => (
+                                <TableRow key={article.id}>
+                                    <TableCell>{article.id}</TableCell>
+                                    <TableCell>{article.title}</TableCell>
+                                    <TableCell>{article.reported_reason}</TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant="outlined"
+                                            color="secondary"
+                                            sx={{ mr: 1 }}
+                                            onClick={async () => {
+                                                try {
+                                                    await sendSourceEmail({
+                                                        source_email: article.ministry_to_report,
+                                                        article_title: article.title,
+                                                        article_url: article.url,
+                                                    });
+                                                    alert("Email has been sent to the source.");
+                                                } catch (err) {
+                                                    alert("Failed to send email to source.");
+                                                }
+                                            }}
+                                        >
+                                            Send Email to Source
+                                        </Button>
+                                        <Button
+                                            variant="outlined"
+                                            color="warning"
+                                            sx={{ mr: 1 }}
+                                            onClick={async () => {
+                                                try {
+                                                    await sendMinistryEmail({
+                                                        ministry: article.ministry_to_report,
+                                                        article_title: article.title,
+                                                        article_url: article.url,
+                                                    });
+                                                    alert("Email has been sent to the ministry.");
+                                                } catch (err) {
+                                                    alert("Failed to send email to ministry.");
+                                                }
+                                            }}
+                                        >
+                                            Send Email to Ministry
+                                        </Button>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            href={`/articles/${article.id}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            View
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        )}
+                    </TableBody>
+                </Table>
             </TableContainer>
         </Container>
     );

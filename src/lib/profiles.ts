@@ -25,3 +25,8 @@ export async function triggerCrawl(profileName: string) {
   const response = await api.post(`/profiles/${profileName}/crawl`);
   return response.data;
 }
+
+export async function fetchProfileAnalytics(profileName: string) {
+  const response = await api.get(`/profiles/${profileName}/analytics`);
+  return response.data;
+}

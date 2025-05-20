@@ -36,8 +36,10 @@ export default function ProfileList() {
               <Button variant="contained" color="primary" onClick={() => handleCrawl(profile.name)} sx={{ mt: 2, mr: 1 }}>
                 Crawl
               </Button>
-              <Link href={`/profiles/${profile.name}/edit`}>
-                <Button variant="outlined" sx={{ mt: 2, mr: 1 }}>Edit</Button>
+              <Link href="/dashboard/[name]" as={`/dashboard/${profile.name}`}>
+                <Button variant="contained" color="secondary" sx={{ mt: 2, mr: 1 }}>
+                  View Analytics
+                </Button>
               </Link>
               <Button variant="outlined" color="error" onClick={() => handleDelete(profile.name)} sx={{ mt: 2 }}>
                 Delete

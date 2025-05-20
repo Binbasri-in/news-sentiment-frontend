@@ -9,7 +9,7 @@ export default function Footer() {
         <Divider sx={{ mb: 2 }} />
         <Stack spacing={1} textAlign="center">
           <Typography variant="body2" color="textSecondary">
-            &copy; {new Date().getFullYear()} NewsCrawler. All rights reserved.
+            &copy; {new Date().getFullYear()} NewsGOVInsight. All rights reserved.
           </Typography>
           <Typography variant="caption" color="textSecondary">
             Disclaimer: The content on this website is aggregated from external news sources. We do not guarantee the accuracy or completeness of any information presented.

@@ -16,7 +16,7 @@ export default function Header() {
 
           {/* Website Name */}
           <Typography variant="h6" color="inherit" noWrap component="div">
-            NewsCrawler
+            NewsGOVInsight
           </Typography>
         </Stack>
 
@@ -27,7 +27,7 @@ export default function Header() {
           <Button color="inherit" component={Link} href="/profiles">Profiles</Button>
           <Button color="inherit" component={Link} href="/reports">Reports</Button>
           <Button color="inherit" component={Link} href="/detect">Detect</Button> {/* 👈 New Link */}
-          <Button color="inherit" component={Link} href="/analytics">Analytics</Button>
+          <Button color="inherit" component={Link} href="/dashboard">Analytics</Button>
         </Stack>
       </Toolbar>
     </AppBar>

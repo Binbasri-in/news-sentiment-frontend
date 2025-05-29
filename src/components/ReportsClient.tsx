@@ -50,7 +50,6 @@ export default function ReportsClient() {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Article ID</TableCell>
                             <TableCell>Title</TableCell>
                             <TableCell>Reason</TableCell>
                             <TableCell>Actions</TableCell>
@@ -78,7 +77,6 @@ export default function ReportsClient() {
                         ) : (
                             reportedArticles.map((article) => (
                                 <TableRow key={article.id}>
-                                    <TableCell>{article.id}</TableCell>
                                     <TableCell>{article.title}</TableCell>
                                     <TableCell>{article.reported_reason}</TableCell>
                                     <TableCell>

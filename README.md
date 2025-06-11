@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Governance Insight 📰🤖
 
-## Getting Started
+> AI-powered platform for real-time news monitoring, sentiment analysis, and ministry-wise classification with tools to flag misleading content.
 
-First, run the development server:
+[![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Material-UI](https://img.shields.io/badge/Material--UI-blue?logo=mui)](https://mui.com/)
+[![Docker](https://img.shields.io/badge/Docker-blue?logo=docker)](https://www.docker.com/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+### 🔍 **Intelligent News Monitoring**
+- **Real-time Crawling**: Automatically scrapes news from multiple sources
+- **Smart Classification**: AI-powered categorization by government ministries
+- **Advanced Filtering**: Search and filter by classification, sentiment, ministry, and date
+
+### 🧠 **AI-Powered Analysis**
+- **Sentiment Analysis**: Automatic detection of positive, negative, and neutral sentiment
+- **Content Classification**: Intelligent categorization into Entertainment, Politics, Business, etc.
+- **Ministry Assignment**: Automatic assignment to relevant government ministries
+
+### 📊 **Analytics Dashboard**
+- **Interactive Visualizations**: Comprehensive charts and graphs
+- **Trend Analysis**: Track sentiment trends over time
+- **Ministry-wise Reports**: Detailed analytics for each government ministry
+- **Real-time Statistics**: Live updates on crawling status and article counts
+
+### 🛡️ **Content Moderation**
+- **Article Reporting**: Flag inappropriate or misleading content
+- **Email Notifications**: Automated alerts to ministries and sources
+- **Review System**: Comprehensive reporting and review workflow
+
+### 🎨 **Modern User Experience**
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Dark Theme**: Professional dark mode interface
+- **Lottie Animations**: Engaging micro-interactions
+- **Intuitive Navigation**: Clean and user-friendly interface
+
+## 🏗️ Architecture
+
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Frontend      │    │     Backend      │    │    External     │
+│   (Next.js)     │◄──►│    (FastAPI)     │◄──►│  News Sources   │
+│                 │    │                  │    │                 │
+│ • React Pages   │    │ • News Crawler   │    │ • RSS Feeds     │
+│ • Material-UI   │    │ • AI Analysis    │    │ • Web Articles  │
+│ • TypeScript    │    │ • Database       │    │ • APIs          │
+│ • Lottie        │    │ • Email Service  │    │                 │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Frontend
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **UI Library**: Material-UI (MUI)
+- **Styling**: Custom CSS with MUI theming
+- **Animations**: Lottie React Player
+- **State Management**: React Hooks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend (Assumed)
+- **Framework**: FastAPI
+- **Language**: Python
+- **Database**: PostgreSQL/MySQL
+- **AI/ML**: Sentiment analysis models
+- **Email**: Automated notification system
 
-## Learn More
+### DevOps
+- **Containerization**: Docker
+- **Deployment**: Production-ready Docker setup
+- **Environment**: Node.js 20 Alpine
 
-To learn more about Next.js, take a look at the following resources:
+## 📦 Installation & Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
+- Node.js 20 or higher
+- Docker (for containerized deployment)
+- Git
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Local Development
 
-## Deploy on Vercel
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/newsgovinsight.git
+cd newsgovinsight
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Install dependencies**
+```bash
+npm install
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. **Environment Setup**
+```bash
+# Create .env.local file
+NEXT_PUBLIC_API_URL=https://your-api-url.com
+```
+
+4. **Run development server**
+```bash
+npm run dev
+```
+
+5. **Open browser**
+```
+http://localhost:3000
+```
+
+### Docker Deployment
+
+1. **Build the image**
+```bash
+docker build -t newsgovinsight .
+```
+
+2. **Run the container**
+```bash
+docker run -p 3000:3000 newsgovinsight
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+**⭐ Star this repository if you found it helpful!**
+
+Made with ❤️ by [Your Name]
+
+</div>
